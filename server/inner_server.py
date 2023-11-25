@@ -64,9 +64,18 @@ def update_public_web_server(topic, payload):
     # Create JSON data
     data = {"spot_name": spot_name, "availability": payload}
 
-    print("data: "+data)
+    print("data: "+str(data))
 
     # Send a POST request to the web server
+    try:
+        response = requests.post(web_server_url, json=data)
+        response.raise_for_status()
+        print(f"Updated web server: {response.status_code}")
+    except requests.exceptions.RequestException as e:
+        print(f"Error updating web server: {e}")
+
+    web_server_url = "http://localhost:8000/update_availability"
+
     try:
         response = requests.post(web_server_url, json=data)
         response.raise_for_status()

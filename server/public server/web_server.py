@@ -4,9 +4,9 @@ app = Flask(__name__)
 
 # Initialize parking spot availability data
 parking_spot_data = {
-    "spot1": False,
-    "spot2": False,
-    "spot3": False,
+    "spot1": True,
+    "spot2": True,
+    "spot3": True,
 }
 
 @app.route('/')
