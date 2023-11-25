@@ -6,32 +6,32 @@ broker_address = "test.mosquitto.org"  # Replace with your MQTT broker's address
 broker_port = 1883  # Replace with your MQTT broker's port
 
 # Topics for three parking spots
-sspot1_availability_topic = "ICC452-1/swiftspot/sspot1/availability"
-sspot1_temperature_topic = "ICC452-1/swiftspot/sspot1/temperature"
-sspot1_humidity_topic = "ICC452-1/swiftspot/sspot1/humidity"
+spot1_availability_topic = "ICC452-1/swiftspot/spot1/availability"
+spot1_temperature_topic = "ICC452-1/swiftspot/spot1/temperature"
+spot1_humidity_topic = "ICC452-1/swiftspot/spot1/humidity"
 
-sspot2_availability_topic = "ICC452-1/swiftspot/sspot2/availability"
-sspot2_temperature_topic = "ICC452-1/swiftspot/sspot2/temperature"
-sspot2_humidity_topic = "ICC452-1/swiftspot/sspot2/humidity"
+spot2_availability_topic = "ICC452-1/swiftspot/spot2/availability"
+spot2_temperature_topic = "ICC452-1/swiftspot/spot2/temperature"
+spot2_humidity_topic = "ICC452-1/swiftspot/spot2/humidity"
 
-sspot3_availability_topic = "ICC452-1/swiftspot/sspot3/availability"
-sspot3_temperature_topic = "ICC452-1/swiftspot/sspot3/temperature"
-sspot3_humidity_topic = "ICC452-1/swiftspot/sspot3/humidity"
+spot3_availability_topic = "ICC452-1/swiftspot/spot3/availability"
+spot3_temperature_topic = "ICC452-1/swiftspot/spot3/temperature"
+spot3_humidity_topic = "ICC452-1/swiftspot/spot3/humidity"
 
 # Callback when the client connects to the broker
 def on_connect(client, userdata, flags, rc):
     print(f"Connected with result code {rc}")
     # Subscribe to topics upon successful connection
     topics = [
-        (sspot1_availability_topic, 0),
-        (sspot1_temperature_topic, 0),
-        (sspot1_humidity_topic, 0),
-        (sspot2_availability_topic, 0),
-        (sspot2_temperature_topic, 0),
-        (sspot2_humidity_topic, 0),
-        (sspot3_availability_topic, 0),
-        (sspot3_temperature_topic, 0),
-        (sspot3_humidity_topic, 0),
+        (spot1_availability_topic, 0),
+        (spot1_temperature_topic, 0),
+        (spot1_humidity_topic, 0),
+        (spot2_availability_topic, 0),
+        (spot2_temperature_topic, 0),
+        (spot2_humidity_topic, 0),
+        (spot3_availability_topic, 0),
+        (spot3_temperature_topic, 0),
+        (spot3_humidity_topic, 0),
     ]
     for topic in topics:
         client.subscribe(topic)
@@ -52,7 +52,7 @@ def on_message(client, userdata, msg):
 
 def update_web_server(topic, payload):
     # Extract parking spot name from the topic
-    spot_name = topic.split("/")[-1]
+    spot_name = topic.split("/")[-2]
 
     # Define the URL of the web server
     web_server_url = "http://localhost:5000/update_availability"

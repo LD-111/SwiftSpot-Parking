@@ -2,8 +2,12 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-# Store parking spot availability data
-parking_spot_data = {}
+# Initialize parking spot availability data
+parking_spot_data = {
+    "spot1": False,
+    "spot2": False,
+    "spot3": False,
+}
 
 @app.route('/')
 def index():
@@ -12,6 +16,7 @@ def index():
 @app.route('/update_availability', methods=['POST'])
 def update_availability():
     data = request.get_json()
+    print(data)
     spot_name = data['spot_name']
     availability = data['availability']
     parking_spot_data[spot_name] = availability
