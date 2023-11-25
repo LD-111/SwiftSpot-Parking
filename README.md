@@ -37,11 +37,11 @@ Test the server using the following example commands:
 
 Publish humidity data:
 ```bash
-mosquitto_pub -h test.mosquitto.org -t "ICC452-1/swiftspot/sslot1/humidity" -m "120.7"
+mosquitto_pub -h test.mosquitto.org -t "ICC452-1/swiftspot/spot1/availability" -m "True"
 ```
 Subscribe to temperature data:
 ```bash
-mosquitto_sub -h test.mosquitto.org -t "ICC452-1/swiftspot/sslot1/temperature"
+mosquitto_sub -h test.mosquitto.org -t "ICC452-1/swiftspot/spot1/availability"
 Adjust the topic and message as needed for testing different parameters and parking spots.
 ```
 
