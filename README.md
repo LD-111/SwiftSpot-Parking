@@ -55,12 +55,13 @@ mosquitto_pub -h test.mosquitto.org -t "ICC452-1/swiftspot/spot1/availability" -
 Subscribe to temperature data:
 ```bash
 mosquitto_sub -h test.mosquitto.org -t "ICC452-1/swiftspot/spot1/availability"
-Adjust the topic and message as needed for testing different parameters and parking spots.
 ```
+Adjust the topic and message as needed for testing different parameters and parking spots.
+
 
 ## Contributors
-- Lorenzo Devia ([LD-111](https://github.com/LD-111))
-- Kianush Atighi-Moghaddam ([kianush00](https://github.com/kianush00))
+- Lorenzo Devia ( [LD-111](https://github.com/LD-111) )
+- Kianush Atighi-Moghaddam ( [kianush00](https://github.com/kianush00) )
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
