@@ -48,9 +48,13 @@ def on_message(client, userdata, msg):
     # Add your business logic here based on the received topic and payload
 
     # Update the web server with parking spot availability
-    update_web_server(topic, payload)
+    
+    if topic.endswith("/availability"):
+        update_public_web_server(topic, payload)
+    else:
+        update_private_web_server(topic, payload)
 
-def update_web_server(topic, payload):
+def update_public_web_server(topic, payload):
     # Extract parking spot name from the topic
     spot_name = topic.split("/")[-2]
 
@@ -59,6 +63,29 @@ def update_web_server(topic, payload):
 
     # Create JSON data
     data = {"spot_name": spot_name, "availability": payload}
+
+    print("data: "+data)
+
+    # Send a POST request to the web server
+    try:
+        response = requests.post(web_server_url, json=data)
+        response.raise_for_status()
+        print(f"Updated web server: {response.status_code}")
+    except requests.exceptions.RequestException as e:
+        print(f"Error updating web server: {e}")
+
+def update_private_web_server(topic, payload):
+    # Extract parking spot name from the topic
+    spot_name = topic.split("/")[-2]
+    parameter_name = topic.split("/")[-1]
+
+    # Define the URL of the web server
+    web_server_url = "http://localhost:8000/update_"+ parameter_name
+
+    # Create JSON data
+    data = {"spot_name": spot_name, parameter_name: payload}
+
+    print("data: "+str(data))
 
     # Send a POST request to the web server
     try:
