@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Lot Status</title>
+</head>
+<body>
+    <h1>Parking Lot Status</h1>
+    <ul>
+        {% for spot, availability in parking_spots.items() %}
+            <li>Parking Spot {{ spot }}: {{ availability }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
