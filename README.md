@@ -25,12 +25,25 @@ Update the MQTT broker details in server.py:
 broker_address = 'example.com'
 broker_port = your_server_port
 ```
-Run the server:
-
+Run the inner server:
 ```bash
+cd '.\server'
 python server.py
 ```
-The server will connect to the test Mosquitto broker and subscribe to topics for three parking spots. Received messages will be printed to the console.
+Run the private web server:
+```bash
+cd '.\server\private server\'
+python web_server.py
+```
+Run the public web server:
+```bash
+cd '.\server\public server\'
+python admin_server.py
+```
+
+The inner servers will connect to the test Mosquitto broker and subscribe to topics for three parking spots. Received messages will be sent to the web servers depending on their nature: 
+- The private web server will handle the availability, temperature and humidity. 
+- The public web server will only handle the availability of each parking spot.
 
 ## Testing
 Test the server using the following example commands:
