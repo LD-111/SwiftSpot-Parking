@@ -5,16 +5,25 @@ This Python script sets up an MQTT server that subscribes to multiple topics rel
 ## Requirements
 - Python 3.x
 - Paho MQTT library
+- Flask
   
 Install the required libraries using the following command:
 
 ```bash
 pip install -r python_requirements.txt
 ```
-## Usage
+## Arduino Setup
+
+There are two sensors in use:
+- A DHT11 CNT5 temperature and moisture sensor
+- A HC-SR04 ultrasonic sensor
+
+The microcontroller used was an Arduino MKR1000. Open the code contained in arduino\arduino_sketch in the Arduino IDE, change the necessary configuration variables (SSID, network password, pins) and upload it to the microcontroller. 
+
+## Server Usage
 Clone the repository:
 ```bash
-git clone https://github.com/yourusername/mqtt-parking-lot-server.git
+git clone https://github.com/LD-11/mqtt-parking-lot-server.git
 
 cd mqtt-parking-lot-server
 ```
@@ -41,7 +50,7 @@ cd '.\server\public server\'
 python admin_server.py
 ```
 
-The inner servers will connect to the test Mosquitto broker and subscribe to topics for three parking spots. Received messages will be sent to the web servers depending on their nature: 
+The inner server will connect to the test Mosquitto broker and subscribe to topics for three parking spots. Received messages will be sent to the web servers depending on their nature: 
 - The private web server will handle the availability, temperature and humidity. 
 - The public web server will only handle the availability of each parking spot.
 
@@ -50,7 +59,7 @@ Test the server using the following example commands:
 
 Publish humidity data:
 ```bash
-mosquitto_pub -h test.mosquitto.org -t "ICC452-1/swiftspot/spot1/availability" -m "True"
+mosquitto_pub -h test.mosquitto.org -t "ICC452-1/swiftspot/spot1/availability" -m "0"
 ```
 Subscribe to temperature data:
 ```bash
