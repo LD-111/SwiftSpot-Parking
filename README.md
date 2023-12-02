@@ -13,6 +13,7 @@ Install the required libraries using the following command:
 pip install -r python_requirements.txt
 ```
 ## Arduino Setup
+![Arduino Setup](./arduino/Arduino%20Setup.jpg)
 
 There are two sensors in use:
 - A DHT11 CNT5 temperature and moisture sensor
