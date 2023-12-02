@@ -56,13 +56,13 @@ The inner server will connect to the test Mosquitto broker and subscribe to topi
 - The public web server will only handle the availability of each parking spot.
 
 ## Testing
-Test the server using the following example commands:
+Test the server using the following example commands(Replace with your chosen MQTT server):
 
-Publish humidity data:
+Publish availability data:
 ```bash
 mosquitto_pub -h test.mosquitto.org -t "ICC452-1/swiftspot/spot1/availability" -m "0"
 ```
-Subscribe to temperature data:
+Subscribe to availability data:
 ```bash
 mosquitto_sub -h test.mosquitto.org -t "ICC452-1/swiftspot/spot1/availability"
 ```
