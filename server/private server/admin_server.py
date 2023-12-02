@@ -5,14 +5,14 @@ app = Flask(__name__)
 # Initialize parking spot availability data
 parking_spot_data = {
     "spot1-availability": True,
-    "spot1-temperature": 0.0,
-    "spot1-humidity": 0.0,
+    "spot1-temperature(C°)": 0.0,
+    "spot1-humidity(%)": 0.0,
     "spot2-availability": True,
-    "spot2-temperature": 0.0,
-    "spot2-humidity": 0.0,
+    "spot2-temperature(C°)": 0.0,
+    "spot2-humidity(%)": 0.0,
     "spot3-availability": True,
-    "spot3-temperature": 0.0,
-    "spot3-humidity": 0.0,
+    "spot3-temperature(C°)": 0.0,
+    "spot3-humidity(%)": 0.0,
 }
 
 @app.route('/')
@@ -25,6 +25,12 @@ def update_availability():
     print(data)
     spot_name = data['spot_name']
     availability = data['availability']
+
+    if availability == "1":
+        availability = True
+    elif availability == "0":
+        availability = False
+        
     parking_spot_data[spot_name+"-availability"] = availability
     print(f"Updated availability for {spot_name}: {availability}")
     return 'OK'
@@ -35,7 +41,7 @@ def update_temp():
     print(data)
     spot_name = data['spot_name']
     temperature = data['temperature']
-    parking_spot_data[spot_name+"-temperature"] = temperature
+    parking_spot_data[spot_name+"-temperature(C°)"] = temperature
     print(f"Updated param for {spot_name}: {temperature}")
     return 'OK'
 
@@ -45,7 +51,7 @@ def update_humid():
     print(data)
     spot_name = data['spot_name']
     humidity = data['humidity']
-    parking_spot_data[spot_name+"-humidity"] = humidity
+    parking_spot_data[spot_name+"-humidity(%)"] = humidity
     print(parking_spot_data)
     print(f"Updated param for {spot_name}: {humidity}")
     return 'OK'

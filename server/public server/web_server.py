@@ -19,6 +19,12 @@ def update_availability():
     print(data)
     spot_name = data['spot_name']
     availability = data['availability']
+
+    if availability == "1":
+        availability = True
+    elif availability == "0":
+        availability = False
+        
     parking_spot_data[spot_name] = availability
     print(f"Updated availability for {spot_name}: {availability}")
     return 'OK'
