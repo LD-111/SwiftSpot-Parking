@@ -1,6 +1,6 @@
 # SwiftSpot-Parking
 ## Overview
-This Python script sets up an MQTT server that subscribes to multiple topics related to a parking lot, collecting parameters such as availability, temperature, and humidity for each spot. The script uses the Paho MQTT library and can be configured to connect to any MQTT broker.
+This University Project consists in a number of sensors connected to a microcontroller that collect data about the status of a parking spot that then sends to an MQTT broker, the Mosquitto Test Server by default. It also features an MQTT server that subscribes to multiple topics related to a parking lot, collecting parameters such as availability, temperature, and humidity for each spot, displaying them in a simple webserver available to the public and one intended for administrators. The project can be configured to connect to any MQTT broker.
 
 ## Requirements
 - Python 3.x
